@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jarvis HQ</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:#111719;color:#f4f0e8;font-family:-apple-system,BlinkMacSystemFont,sans-serif;padding:28px 20px}
+main{max-width:540px;margin:auto}
+small{color:#a6b9ac;letter-spacing:3px}
+h1{font-size:36px;margin:20px 0 8px}
+p{color:#b8c2bb;line-height:1.5}
+.card{background:#202b29;border:1px solid #36433c;border-radius:20px;padding:20px;margin:16px 0}
+h2{font-size:19px;margin:0 0 14px}
+button,a.tile{background:#34483e;color:#fff;border:0;border-radius:12px;padding:13px;font-size:15px;text-decoration:none;cursor:pointer}
+button{margin:4px}
+button.active{background:#b5d3aa;color:#17221a}
+.primary{background:#b5d3aa;color:#17221a;width:100%;margin:8px 0;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{display:block;text-align:center}
+footer{text-align:center;color:#81968a;font-size:12px;margin:35px 0}
+</style>
+</head>
+<body>
+<main>
+<small>✦ JARVIS HQ</small>
+<h1 id="greeting">Hello ☾</h1>
+<p>Your day, at your pace.</p>
+<section class="card">
+<h2>🌿 How's your energy?</h2>
+<div id="energy">
+<button data-energy="Low">🪫 Low</button>
+<button data-energy="Medium">🌤 Medium</button>
+<button data-energy="High">⚡ High</button>
+</div>
+<p id="message">Choose how you're feeling today.</p>
+</section>
+<section class="card">
+<h2>☀️ My daily briefing</h2>
+<p>Open ChatGPT to check your calendar, tasks and priorities.</p>
+<button class="primary" onclick="window.open('https://chatgpt.com/','_blank')">Open ChatGPT ↗</button>
+</section>
+<section class="card">
+<h2>✨ My spaces</h2>
+<div class="grid">
+<a class="tile" href="https://app.structured.app/">📅 Structured</a>
+<a class="tile" href="https://www.notion.so/">📓 Notion</a>
+<a class="tile" href="https://calendar.google.com/">🗓 Calendar</a>
+<a class="tile" href="https://github.com/">💻 GitHub</a>
+</div>
+</section>
+<footer>Made for slower, softer days ✦</footer>
+</main>
+<script>
+const hour=new Date().getHours();
+document.getElementById('greeting').textContent=
+hour<12?'Good morning ☀️':hour<17?'Good afternoon 🌿':'Good evening ☾';
+const messages={
+Low:'Keep things gentle. One small thing is enough.',
+Medium:'A little momentum, with room to rest.',
+High:'Use your energy for something meaningful.'
+};
+const buttons=document.querySelectorAll('[data-energy]');
+function setEnergy(value){
+document.getElementById('message').textContent=messages[value];
+buttons.forEach(b=>b.classList.toggle('active',b.dataset.energy===value));
+}
+buttons.forEach(b=>b.addEventListener('click',()=>{
+const value=b.dataset.energy;
+localStorage.setItem('jarvis-energy',value);
+setEnergy(value);
+}));
+const saved=localStorage.getItem('jarvis-energy');
+if(messages[saved])setEnergy(saved);
+</script>
+</body>
+</html>
