@@ -74,6 +74,11 @@ setEnergy(value);
 }));
 const saved=localStorage.getItem('jarvis-energy');
 if(messages[saved])setEnergy(saved);
+function openJarvis() {
+  const request = "Jarvis, brief me. Check today's calendar and Structured tasks. Give me a short, gentle briefing based on my actual schedule. Don't change anything.";
+  const url = "https://chatgpt.com/?q=" + encodeURIComponent(request);
+  window.location.href = url;
+}
 </script>
 </body>
 </html>
