@@ -75,7 +75,7 @@ setEnergy(value);
 const saved=localStorage.getItem('jarvis-energy');
 if(messages[saved])setEnergy(saved);
 function openJarvis() {
-  {code}
+window.location.href = "https://chatgpt.com/?q=" + encodeURIComponent("Jarvis, brief me. Check my connected Google Calendar and Structured tasks for today in India Standard Time. Give me a short, gentle briefing. Don't change anything.");
 }
 </script>
 </body>
