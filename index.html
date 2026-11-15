@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,35 +8,40 @@
 <title>Jarvis HQ</title>
 
 <style>
-:root {
-  color-scheme: dark;
-}
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
+  padding: 24px 18px;
   background: #111719;
   color: #f4f0e8;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  padding: 28px 20px;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
+
 main {
-  max-width: 540px;
-  margin: auto;
+  max-width: 520px;
+  margin: 0 auto;
 }
-small {
+
+.brand {
   color: #a6b9ac;
   letter-spacing: 3px;
+  font-size: 12px;
 }
+
 h1 {
-  font-size: 36px;
-  margin: 20px 0 8px;
+  font-size: 34px;
+  margin: 22px 0 8px;
 }
-p {
+
+.subtitle {
   color: #b8c2bb;
-  line-height: 1.5;
+  margin-bottom: 25px;
 }
+
 .card {
   background: #202b29;
   border: 1px solid #36433c;
@@ -43,44 +49,59 @@ p {
   padding: 20px;
   margin: 16px 0;
 }
+
 h2 {
   font-size: 19px;
-  margin: 0 0 14px;
+  margin: 0 0 12px;
 }
-button, a.tile {
-  background: #34483e;
-  color: #fff;
-  border: 0;
+
+p {
+  color: #b8c2bb;
+  line-height: 1.6;
+}
+
+button, .tile {
+  border: none;
   border-radius: 12px;
-  padding: 13px;
+  background: #34483e;
+  color: white;
+  padding: 14px;
   font-size: 15px;
-  text-decoration: none;
   cursor: pointer;
 }
+
 button {
   margin: 4px;
 }
+
 button.active {
   background: #b5d3aa;
   color: #17221a;
 }
+
 .primary {
+  display: block;
+  width: 100%;
   background: #b5d3aa;
   color: #17221a;
-  width: 100%;
-  margin: 8px 0;
-  font-weight: 600;
-  min-height: 50px;
+  font-weight: 700;
+  margin: 14px 0 0;
+  text-align: center;
+  text-decoration: none;
 }
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
+
 .tile {
   display: block;
   text-align: center;
+  text-decoration: none;
 }
+
 footer {
   text-align: center;
   color: #81968a;
@@ -91,132 +112,175 @@ footer {
 </head>
 
 <body>
+
 <main>
 
-<small>✦ JARVIS HQ</small>
+<div class="brand">✦ JARVIS HQ</div>
 
-<h1 id="greeting">Hello ☾</h1>
-<p>Your day, at your pace.</p>
+<h1 id="greeting">Welcome home ☾</h1>
+
+<p class="subtitle">Your day, at your pace.</p>
 
 <section class="card">
   <h2>🌿 How's your energy?</h2>
+
   <div id="energy">
-    <button type="button" data-energy="Low">🪫 Low</button>
-    <button type="button" data-energy="Medium">🌤 Medium</button>
-    <button type="button" data-energy="High">⚡ High</button>
+    <button type="button" data-energy="Low">
+      🪫 Low
+    </button>
+
+    <button type="button" data-energy="Medium">
+      🌤 Medium
+    </button>
+
+    <button type="button" data-energy="High">
+      ⚡ High
+    </button>
   </div>
-  <p id="message">Choose how you're feeling today.</p>
+
+  <p id="message">
+    Choose how you're feeling today.
+  </p>
 </section>
 
 <section class="card">
   <h2>☀️ My daily briefing</h2>
+
   <p>
-    Check your connected calendar and tasks,
-    with a plan that respects your energy.
+    Your calendar, your tasks, and a gentle plan
+    for the day ahead.
   </p>
-  <button
-    type="button"
+
+  <a
+    id="briefing"
     class="primary"
-    onclick="openJarvis()">
+    href="https://chatgpt.com/">
     ✨ Jarvis, brief me
-  </button>
+  </a>
 </section>
 
 <section class="card">
   <h2>✨ My spaces</h2>
+
   <div class="grid">
-    <a class="tile" href="https://app.structured.app/">
+
+    <a class="tile"
+       href="https://app.structured.app/">
       📅 Structured
     </a>
-    <a class="tile" href="https://www.notion.so/">
+
+    <a class="tile"
+       href="https://www.notion.so/">
       📓 Notion
     </a>
-    <a class="tile" href="https://calendar.google.com/">
+
+    <a class="tile"
+       href="https://calendar.google.com/">
       🗓 Calendar
     </a>
-    <a class="tile" href="https://github.com/">
+
+    <a class="tile"
+       href="https://github.com/">
       💻 GitHub
     </a>
+
   </div>
 </section>
 
-<footer>Made for slower, softer days ✦</footer>
+<footer>
+  Made for slower, softer days ✦
+</footer>
 
 </main>
 
 <script>
-const hour = new Date().getHours();
+(function () {
+  const hour = new Date().getHours();
 
-document.getElementById("greeting").textContent =
-  hour < 12
-    ? "Good morning ☀️"
-    : hour < 17
-    ? "Good afternoon 🌿"
-    : "Good evening ☾";
+  const greeting =
+    hour < 12
+      ? "Good morning ☀️"
+      : hour < 17
+      ? "Good afternoon 🌿"
+      : "Good evening ☾";
 
-const messages = {
-  Low: "Keep things gentle. One small thing is enough.",
-  Medium: "A little momentum, with room to rest.",
-  High: "Use your energy for something meaningful."
-};
+  document.getElementById("greeting").textContent =
+    greeting;
 
-const buttons = document.querySelectorAll("[data-energy]");
+  const messages = {
+    Low: "Keep things gentle. One small thing is enough.",
+    Medium: "A little momentum, with room to rest.",
+    High: "Use your energy for something meaningful."
+  };
 
-function setEnergy(value) {
-  document.getElementById("message").textContent =
-    messages[value];
+  let selectedEnergy = "";
 
-  buttons.forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.energy === value
-    );
+  try {
+    selectedEnergy =
+      localStorage.getItem("jarvis-energy") || "";
+  } catch (error) {
+    selectedEnergy = "";
+  }
+
+  const buttons =
+    document.querySelectorAll("[data-energy]");
+
+  function updateEnergy(value) {
+    selectedEnergy = value;
+
+    document.getElementById("message").textContent =
+      messages[value];
+
+    buttons.forEach(function (button) {
+      button.classList.toggle(
+        "active",
+        button.dataset.energy === value
+      );
+    });
+
+    try {
+      localStorage.setItem("jarvis-energy", value);
+    } catch (error) {}
+
+    updateBriefing();
+  }
+
+  function updateBriefing() {
+    const energyText = selectedEnergy
+      ? "My energy today is " + selectedEnergy + "."
+      : "I haven't selected my energy level.";
+
+    const prompt = [
+      "Jarvis, brief me.",
+      "Use the current date and time in India Standard Time.",
+      "Check my connected Google Calendar and Structured tasks.",
+      "Only include events and tasks you can verify.",
+      energyText,
+      "Give me a short, gentle briefing.",
+      "Adapt the plan to the time of day and my energy.",
+      "Leave breathing room.",
+      "Tell me if any connected app is unavailable.",
+      "Do not invent information.",
+      "Do not change anything in my apps."
+    ].join(" ");
+
+    document.getElementById("briefing").href =
+      "https://chatgpt.com/?q=" +
+      encodeURIComponent(prompt);
+  }
+
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      updateEnergy(button.dataset.energy);
+    });
   });
-}
 
-buttons.forEach(button => {
-  button.addEventListener("click", () => {
-    const value = button.dataset.energy;
-    localStorage.setItem("jarvis-energy", value);
-    setEnergy(value);
-  });
-});
-
-const saved = localStorage.getItem("jarvis-energy");
-
-if (messages[saved]) {
-  setEnergy(saved);
-}
-
-function openJarvis() {
-  const energy = localStorage.getItem("jarvis-energy");
-
-  const energyNote = messages[energy]
-    ? "My energy today is " + energy + "."
-    : "I haven't selected an energy level. Don't assume one.";
-
-  const prompt = [
-    "Jarvis, brief me.",
-    "Use today's date and current time in India Standard Time.",
-    "Check my connected Google Calendar and Structured tasks.",
-    "Identify today's events, tasks, and unfinished commitments",
-    "that you can actually verify.",
-    energyNote,
-    "Give me a short briefing appropriate to the time of day.",
-    "Suggest a flexible order with breathing room.",
-    "If my energy is low, prioritize rest and essentials.",
-    "If an app cannot be accessed, tell me clearly.",
-    "Never invent events, tasks, or completed actions.",
-    "Do not change anything in my connected apps.",
-    "Keep the briefing warm, simple, and easy to follow."
-  ].join(" ");
-
-  const url =
-    "https://chatgpt.com/?q=" +
-    encodeURIComponent(prompt);
-
-  window.location.assign(url);
-}
+  if (messages[selectedEnergy]) {
+    updateEnergy(selectedEnergy);
+  } else {
+    updateBriefing();
+  }
+})();
 </script>
 
 </body>
