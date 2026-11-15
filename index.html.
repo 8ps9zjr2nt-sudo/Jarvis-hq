@@ -40,7 +40,7 @@ footer{text-align:center;color:#81968a;font-size:12px;margin:35px 0}
 <section class="card">
 <h2>☀️ My daily briefing</h2>
 <p>Open ChatGPT to check your calendar, tasks and priorities.</p>
-<button class="primary" onclick="window.open('https://chatgpt.com/','_blank')">Open ChatGPT ↗</button>
+<button class="primary" onclick="openJarvis()">✨ Jarvis, brief me</button>
 </section>
 <section class="card">
 <h2>✨ My spaces</h2>
